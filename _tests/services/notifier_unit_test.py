@@ -1,11 +1,11 @@
 import pytest
-import src.notifier_service as notifier_service
+import src.services.notifier_service as notifier_service
 
 
 @pytest.fixture()
 def mock_dependencies(mocker):
     return {
-        'notify': mocker.patch('src.notifier_service.Notify')
+        'notify': mocker.patch('src.services.notifier_service.Notify')
     }
 
 
