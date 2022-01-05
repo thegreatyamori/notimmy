@@ -23,9 +23,10 @@ def request_P2P_data(tradeType, payTypes, transactionAmount=0):
         "fiat": "USD",
         "transAmount": transactionAmount,
         "order": '',
-        "merchantCheck": False,
+        "publisherType": None,
         "page": 1,
         "rows": 10,
+        "countryType": 'ecuador',
         "filterType": 'all',
         "payTypes": payTypes
     }
