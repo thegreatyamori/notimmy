@@ -1,4 +1,4 @@
-from src.request_p2p_data import request_P2P_data
+from src.request_data import request_P2P_data
 
 
 def test_request_calls_binance_p2p_api(mocker):
