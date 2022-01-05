@@ -13,12 +13,12 @@ class BinanceP2PParser():
     def get_info(self):
         return [
             {
+                "nickName": trader["advertiser"]["nickName"],
                 "price": trader["adv"]["price"],
                 "surplusAmount": trader["adv"]["surplusAmount"],
-                "maxSingleTransAmount": trader["adv"]["maxSingleTransAmount"],
+                "maxSingleTransAmount": trader["adv"]["dynamicMaxSingleTransAmount"],
                 "minSingleTransAmount": trader["adv"]["minSingleTransAmount"],
-                "tradeMethods": trader["adv"]["tradeMethods"],
-                "nickName": trader["advertiser"]["nickName"]
+                "tradeMethods": trader["adv"]["tradeMethods"]
             }
             for trader in self.parsed_data['data']
         ]
