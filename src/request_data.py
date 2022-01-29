@@ -2,7 +2,8 @@ import requests
 
 from .services.parser_service import BinanceP2PParser
 
-def request_P2P_data(tradeType, payTypes, transactionAmount=0):
+
+def request_p2p_data(trade_type, pay_types, transaction_amount=0):
     headers = {
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
@@ -19,16 +20,16 @@ def request_P2P_data(tradeType, payTypes, transactionAmount=0):
     }
     data = {
         "asset": "USDT",
-        "tradeType": tradeType,
+        "tradeType": trade_type,
         "fiat": "USD",
-        "transAmount": transactionAmount,
+        "transAmount": transaction_amount,
         "order": '',
         "publisherType": None,
         "page": 1,
         "rows": 10,
         "countryType": 'ecuador',
         "filterType": 'all',
-        "payTypes": payTypes
+        "payTypes": pay_types
     }
     api_url = 'https://p2p.binance.com/bapi/c2c/v2/friendly/c2c/adv/search'
     response = requests.post(

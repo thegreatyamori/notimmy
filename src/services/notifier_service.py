@@ -1,5 +1,6 @@
 from notifypy import Notify
 
+
 class NotifierService():
     def __init__(self, title, message) -> None:
         self.title = title
