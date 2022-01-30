@@ -2,7 +2,7 @@ import json
 import typing
 
 
-class BinanceP2PParser():
+class P2PMapper:
     def __init__(self, data) -> None:
         self.data = data
         self.parsed_data = self.__parse_data()
@@ -10,7 +10,7 @@ class BinanceP2PParser():
     def __parse_data(self) -> typing.Dict:
         return json.loads(self.data)
 
-    def get_info(self):
+    def execute(self):
         return [
             {
                 "nickName": trade_offer["advertiser"]["nickName"],
