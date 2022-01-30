@@ -1,6 +1,6 @@
 import sqlite3
 import os
-
+import typing
 
 _DB_NAME = 'p2p_system.db'
 _BASE_PATH = "../../"
@@ -22,14 +22,22 @@ def create_table(cursor: sqlite3.Cursor, table_name: str, attributes: tuple):
 
 def insert_item(cursor: sqlite3.Cursor, table_name: str, attributes: tuple, values: tuple):
     build_query = (
-        f"INSERT INTO {table_name} {attributes} "
+        "INSERT INTO {table_name} {attributes} "
         "VALUES (?,?,?,?,?);"
     ).format(table_name=table_name, attributes=attributes)
 
     return cursor.execute(build_query, values)
 
 
+def retrieve_items(cursor: sqlite3.Cursor, table_name: str, column: str, filters: typing.Tuple):
+    build_query = (
+        "SELECT * FROM {table_name} "
+        "WHERE {column} > ? AND {column} < ?"
+    ).format(table_name=table_name, column=column)
+
+    return cursor.execute(build_query, filters)
+
+
 def commit(connection: sqlite3.Connection):
     connection.commit()
     # connection.close()
-
