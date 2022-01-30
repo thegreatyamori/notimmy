@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-from src.business_logic.services.offer import OfferService
+from src.business_logic.services import OfferService
 
 
 class TestOfferService:
@@ -11,7 +11,9 @@ class TestOfferService:
     def test_setup(self, mocker):
         def factory():
             service = OfferService()
-            get_items_inside_range_mock = mocker.patch('src.business_logic.daos.OfferDAO.get_items_inside_range')
+            get_items_inside_range_mock = mocker.patch(
+                'src.business_logic.daos.OfferDAO.get_items_inside_range'
+            )
             insert_mock = mocker.patch('src.business_logic.daos.OfferDAO.insert')
 
             return mocker.Mock(

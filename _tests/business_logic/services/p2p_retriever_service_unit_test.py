@@ -1,4 +1,4 @@
-from src.business_logic.services.p2p_retriever import P2PRetrieverService
+from src.business_logic.services import P2PRetrieverService
 
 
 class TestP2PRetrieverService:

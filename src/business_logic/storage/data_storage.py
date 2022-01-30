@@ -21,10 +21,7 @@ def create_table(cursor: sqlite3.Cursor, table_name: str, attributes: tuple):
 
 
 def insert_item(cursor: sqlite3.Cursor, table_name: str, attributes: tuple, values: tuple):
-    build_query = (
-        "INSERT INTO {table_name} {attributes} "
-        "VALUES (?,?,?,?,?);"
-    ).format(table_name=table_name, attributes=attributes)
+    build_query = f"INSERT INTO {table_name} {attributes} VALUES (?,?,?,?,?);"
 
     return cursor.execute(build_query, values)
 

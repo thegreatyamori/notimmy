@@ -1,11 +1,10 @@
-import typing
-
-from src.business_logic.daos.offer import OfferDAO
 import pytest
 
+from src.business_logic.daos.offer import OfferDAO
 
-@pytest.fixture()
-def fake_connection(mocker):
+
+@pytest.fixture(name='fake_connection')
+def _fake_connection(mocker):
     return mocker.patch('src.business_logic.storage.connect')
 
 
@@ -15,16 +14,16 @@ class TestOfferDAO:
         def factory():
             dao = OfferDAO(connection=fake_connection)
             log = mocker.patch('src.business_logic.daos.offer.logging')
-            ri = mocker.patch('src.business_logic.storage.retrieve_items')
-            ii = mocker.patch('src.business_logic.storage.insert_item')
-            ct = mocker.patch('src.business_logic.storage.create_table')
+            retrieve_items = mocker.patch('src.business_logic.storage.retrieve_items')
+            insert_item = mocker.patch('src.business_logic.storage.insert_item')
+            create_table = mocker.patch('src.business_logic.storage.create_table')
 
             return {
                 'dao': dao,
                 'log': log,
-                'retrieve_items': ri,
-                'insert_item': ii,
-                'create_table': ct,
+                'retrieve_items': retrieve_items,
+                'insert_item': insert_item,
+                'create_table': create_table,
             }
         return factory
 
@@ -32,7 +31,7 @@ class TestOfferDAO:
         setup = test_setup()
         dao = setup['dao']
         log = setup['log']
-        date_ranges = []
+        date_ranges = tuple()
         expected_msg = 'retrieving data...'
 
         dao.get_items_inside_range(date_ranges)
@@ -44,7 +43,7 @@ class TestOfferDAO:
         setup = test_setup()
         dao = setup['dao']
         retrieve_items = setup['retrieve_items']
-        date_ranges = []
+        date_ranges = tuple()
 
         dao.get_items_inside_range(date_ranges)
 
@@ -91,7 +90,11 @@ class TestOfferDAO:
         assert log.info.called
         assert log.info.call_args == mocker.call(expected_msg)
 
-    def test__calls_create_table__when_create_method_is_invoked_constructor(self, test_setup, fake_connection):
+    def test__calls_create_table__when_create_method_is_invoked_constructor(
+            self,
+            test_setup,
+            fake_connection
+    ):
         setup = test_setup()
         dao = setup['dao']
         create_table = setup['create_table']

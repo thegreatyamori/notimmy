@@ -18,20 +18,20 @@ class Model:
         self.name = None
         self.attributes = None
 
-        self.__get_model_name()
+        self._get_model_name()
         (
             self
-            .__set_attributes_to_string()
-            .__set_pk()
-            .__set_null()
-            .__get_attributes()
+            ._set_attributes_to_string()
+            ._set_pk()
+            ._set_null()
+            ._get_attributes()
         )
 
-    def __get_model_name(self):
+    def _get_model_name(self):
         model_name = self.model.__name__
         self.name = self._to_snake_case(model_name)
 
-    def __set_attributes_to_string(self):
+    def _set_attributes_to_string(self):
         attributes = self.model.__annotations__
         self.attributes = [
             f"{_attr} {_DATA_TYPES[_type]}"
@@ -39,26 +39,26 @@ class Model:
         ]
         return self
 
-    def __set_pk(self):
-        pk = "PRIMARY KEY AUTOINCREMENT"
-        self.attributes[0] += f" {pk}"
+    def _set_pk(self):
+        _pk = "PRIMARY KEY AUTOINCREMENT"
+        self.attributes[0] += f" {_pk}"
         return self
 
-    def __set_null(self):
+    def _set_null(self):
         _model = self.model.__dict__
         _attributes = self.model.__annotations__
-        _NULL = "NULL"
-        _NOT_NULL = "NOT NULL"
+        _null = "NULL"
+        _not_null = "NOT NULL"
 
         for position, _attr in enumerate(_attributes.keys()):
             try:
                 if not _model[_attr]:
-                    self.attributes[position] += f" {_NULL}"
+                    self.attributes[position] += f" {_null}"
             except KeyError:
-                self.attributes[position] += f" {_NOT_NULL}"
+                self.attributes[position] += f" {_not_null}"
         return self
 
-    def __get_attributes(self):
+    def _get_attributes(self):
         self.attributes = tuple(self.attributes)
         return self
 
