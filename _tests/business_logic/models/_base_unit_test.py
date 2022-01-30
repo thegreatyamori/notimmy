@@ -1,7 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 
-from src.models._base import Model
+from src.business_logic.models import Model
 
 
 class Person:

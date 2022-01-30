@@ -1,5 +1,5 @@
 import pytest
-import src.services.notifier_service as notifier_service
+import src.business_logic.services.notifier as notifier_service
 
 
 @pytest.fixture()

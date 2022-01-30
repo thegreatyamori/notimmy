@@ -1,6 +1,6 @@
 import requests
 
-from .services.parser_service import BinanceP2PParser
+from src.business_logic.services.parser import BinanceP2PParser
 
 
 def request_p2p_data(trade_type, pay_types, transaction_amount=0):

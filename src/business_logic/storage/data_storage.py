@@ -3,7 +3,7 @@ import os
 import typing
 
 _DB_NAME = 'p2p_system.db'
-_BASE_PATH = "../../"
+_BASE_PATH = "../../../"
 
 
 def connect():
@@ -35,7 +35,7 @@ def retrieve_items(cursor: sqlite3.Cursor, table_name: str, column: str, filters
         "WHERE {column} > ? AND {column} < ?"
     ).format(table_name=table_name, column=column)
 
-    return cursor.execute(build_query, filters)
+    return cursor.execute(build_query, filters).fetchall()
 
 
 def commit(connection: sqlite3.Connection):

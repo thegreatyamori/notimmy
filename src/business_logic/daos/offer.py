@@ -1,13 +1,23 @@
 import sqlite3
 import logging
+import typing
 
 from datetime import datetime
 
-import src.storage as ds
-from src.models.offer import model_offer
+import src.business_logic.storage as ds
+from src.business_logic.models.offer import model_offer
 
 
-class OfferService:
+def _build_items(retrieved_items: typing.List) -> typing.List[model_offer.model]:
+    model_attrs = model_offer.model.__annotations__.keys()
+    return [
+        model_offer.model(
+            **{attr: value for attr, value in zip(model_attrs, item)}
+        ) for item in retrieved_items
+    ]
+
+
+class OfferDAO:
     def __init__(self, connection: sqlite3.Connection):
         self.connection = connection
         self.cursor = connection.cursor()
@@ -15,15 +25,14 @@ class OfferService:
 
         self.__create()
 
-    def get_all_inside_range(self, date_ranges):
+    def get_items_inside_range(self, date_ranges) -> typing.List[model_offer.model]:
         filters = [f"{date_range}%" for date_range in date_ranges]
         retrieved_items = ds.retrieve_items(self.cursor, self.name, 'created_at', filters)
         logging.info('retrieving data...')
 
-        for item in retrieved_items.fetchall():
-            print(item)
+        return _build_items(retrieved_items)
 
-    def insert(self, **params_values):
+    def insert(self, **params_values: typing.Dict):
         created_at = (
             datetime.utcnow()
             if not params_values.get('created_at') else
@@ -31,6 +40,7 @@ class OfferService:
         )
         _values = {
             **params_values,
+            'created_by': 'thegrbot',
             'updated_by': 'thegrbot',
             'created_at': created_at,
             'updated_at': datetime.utcnow(),
@@ -46,12 +56,3 @@ class OfferService:
     def __create(self):
         ds.create_table(self.cursor, self.name, model_offer.attributes)
         logging.info('creating table...')
-
-
-# c = OfferService(connection=ds.connect())
-# c.insert(value=1.4563, created_by="thegrbot")
-# c.get_all_inside_range((
-#     datetime(2022, 1, 29, 22, 10),
-#     datetime(2022, 1, 29, 22, 40),
-# ))
-# ds.commit(c.connection)
