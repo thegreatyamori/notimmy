@@ -25,7 +25,7 @@ class OfferDAO:
 
         self.__create()
 
-    def get_items_inside_range(self, date_ranges) -> typing.List[model_offer.model]:
+    def get_items_inside_range(self, date_ranges: typing.Tuple) -> typing.List[model_offer.model]:
         filters = [f"{date_range}%" for date_range in date_ranges]
         retrieved_items = ds.retrieve_items(self.cursor, self.name, 'created_at', filters)
         logging.info('retrieving data...')

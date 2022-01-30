@@ -35,9 +35,9 @@ class TestOfferDAO:
         date_ranges = []
         expected_msg = 'retrieving data...'
 
-        dao.get_all_inside_range(date_ranges)
+        dao.get_items_inside_range(date_ranges)
 
-        assert log.info.call
+        assert log.info.called
         assert log.info.call_args == mocker.call(expected_msg)
 
     def test__calls_retrieve_items__when_get_method_is_called(self, test_setup):
@@ -46,7 +46,7 @@ class TestOfferDAO:
         retrieve_items = setup['retrieve_items']
         date_ranges = []
 
-        dao.get_all_inside_range(date_ranges)
+        dao.get_items_inside_range(date_ranges)
 
         retrieve_items.assert_called_once_with(dao.cursor, dao.name, 'created_at', date_ranges)
 
@@ -61,7 +61,7 @@ class TestOfferDAO:
 
         dao.insert(**param_values)
 
-        assert log.info.call
+        assert log.info.called
         assert log.info.call_args == mocker.call(expected_msg)
 
     def test__calls_insert_item__when_insert_method_is_called(self, mocker, test_setup):
@@ -77,7 +77,7 @@ class TestOfferDAO:
 
         dao.insert(**param_values)
 
-        assert insert_item.call
+        assert insert_item.called
         assert insert_item.call_args.args[0:3] == (dao.cursor, expected_name, expected_attributes)
 
     def test__shows_log_message__when_dao_was_invoked(self, mocker, test_setup, fake_connection):
@@ -88,7 +88,7 @@ class TestOfferDAO:
 
         dao.__init__(fake_connection)
 
-        assert log.info.call
+        assert log.info.called
         assert log.info.call_args == mocker.call(expected_msg)
 
     def test__calls_create_table__when_create_method_is_invoked_constructor(self, test_setup, fake_connection):
@@ -98,5 +98,5 @@ class TestOfferDAO:
 
         dao.__init__(fake_connection)
 
-        assert create_table.call
+        assert create_table.called
         assert create_table.call_args.args[0:2] == (dao.cursor, dao.name)
