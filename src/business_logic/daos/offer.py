@@ -11,7 +11,9 @@ from src.business_logic.models.offer import model_offer
 def _build_items(retrieved_items: typing.List) -> typing.List[model_offer.model]:
     model_attrs = model_offer.model.__annotations__.keys()
     return [
-        model_offer.model(dict(zip(model_attrs, item)))
+        model_offer.model(
+            **{attr: value for attr, value in zip(model_attrs, item)}  # pylint:disable=unnecessary-comprehension
+        )
         for item in retrieved_items
     ]
 
@@ -22,8 +24,6 @@ class OfferDAO:
         self.cursor = connection.cursor()
         self.name = model_offer.name
 
-        self.__create()
-
     def get_items_inside_range(self, date_ranges: typing.Tuple) -> typing.List[model_offer.model]:
         filters = [f"{date_range}%" for date_range in date_ranges]
         retrieved_items = ds.retrieve_items(self.cursor, self.name, 'created_at', filters)
@@ -31,7 +31,7 @@ class OfferDAO:
 
         return _build_items(retrieved_items)
 
-    def insert(self, **params_values: typing.Dict):
+    def insert(self, **params_values):
         created_at = (
             datetime.utcnow()
             if not params_values.get('created_at') else
@@ -52,6 +52,15 @@ class OfferDAO:
         ds.insert_item(self.cursor, self.name, attributes_as_tuple, values_as_tuple)
         logging.info('inserting data...')
 
-    def __create(self):
-        ds.create_table(self.cursor, self.name, model_offer.attributes)
-        logging.info('creating table...')
+
+def create_offer_table():
+    connection = ds.connect()
+    cursor = connection.cursor()
+    ds.create_table(cursor, model_offer.name, model_offer.attributes)
+
+    logging.info('creating table...')
+
+    ds.commit(connection)
+
+
+create_offer_table()

@@ -9,13 +9,20 @@ _DEFAULT_CURRENCY = "USDT"
 class P2PRetrieverService:
     __base_url = "p2p.binance.com"
 
-    def __init__(self, trade_type, pay_types, transaction_amount=0, asset=_DEFAULT_CURRENCY):
+    def __init__(
+        self,
+        trade_type,
+        pay_types,
+        country,
+        **kwargs,
+    ):
         self.trade_type = trade_type
         self.pay_types = pay_types
-        self.transaction_amount = transaction_amount
-        self.asset = asset
+        self.country = country
+        self.transaction_amount = kwargs.get('transaction_amount', 0)
+        self.asset = kwargs.get('asset', _DEFAULT_CURRENCY)
 
-    def retrieve(self):
+    def fetch(self):
         headers = self.__set_headers()
         data = self.__build_data()
         api_url = f"https://{self.__base_url}/bapi/c2c/v2/friendly/c2c/adv/search"
@@ -28,6 +35,7 @@ class P2PRetrieverService:
         return {
             "asset": self.asset,
             "payTypes": self.pay_types,
+            "countryType": self.country,
             "tradeType": self.trade_type,
             "transAmount": self.transaction_amount,
             "page": 1,
@@ -36,7 +44,6 @@ class P2PRetrieverService:
             "fiat": "USD",
             "filterType": 'all',
             "publisherType": None,
-            "countryType": 'ecuador',
         }
 
     def __set_headers(self):

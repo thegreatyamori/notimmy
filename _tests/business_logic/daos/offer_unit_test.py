@@ -78,28 +78,3 @@ class TestOfferDAO:
 
         assert insert_item.called
         assert insert_item.call_args.args[0:3] == (dao.cursor, expected_name, expected_attributes)
-
-    def test__shows_log_message__when_dao_was_invoked(self, mocker, test_setup, fake_connection):
-        setup = test_setup()
-        log = setup['log']
-        dao = setup['dao']
-        expected_msg = 'creating table...'
-
-        dao.__init__(fake_connection)
-
-        assert log.info.called
-        assert log.info.call_args == mocker.call(expected_msg)
-
-    def test__calls_create_table__when_create_method_is_invoked_constructor(
-            self,
-            test_setup,
-            fake_connection
-    ):
-        setup = test_setup()
-        dao = setup['dao']
-        create_table = setup['create_table']
-
-        dao.__init__(fake_connection)
-
-        assert create_table.called
-        assert create_table.call_args.args[0:2] == (dao.cursor, dao.name)

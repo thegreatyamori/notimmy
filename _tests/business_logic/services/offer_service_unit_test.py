@@ -28,7 +28,7 @@ class TestOfferService:
         expected_date_ranges = (datetime(2022, 1, 30, 13, 00), datetime(2022, 1, 30, 14, 00),)
         min_date_range, max_date_range = expected_date_ranges
 
-        setup.service.get(min_date_range, max_date_range)
+        setup.service.get_many(min_date_range, max_date_range)
 
         setup.get_items_inside_range.assert_called_once_with(expected_date_ranges)
 

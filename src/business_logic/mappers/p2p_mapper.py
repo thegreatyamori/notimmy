@@ -1,5 +1,6 @@
 import json
 import typing
+from decimal import Decimal
 
 
 class P2PMapper:
@@ -14,7 +15,7 @@ class P2PMapper:
         return [
             {
                 "nickName": trade_offer["advertiser"]["nickName"],
-                "price": trade_offer["adv"]["price"],
+                "price": Decimal(trade_offer["adv"]["price"]),
                 "surplusAmount": trade_offer["adv"]["surplusAmount"],
                 "maxSingleTransAmount": trade_offer["adv"]["dynamicMaxSingleTransAmount"],
                 "minSingleTransAmount": trade_offer["adv"]["minSingleTransAmount"],

@@ -1,7 +1,7 @@
 from notifypy import Notify
 
 
-class NotifierService():
+class NotifierService:
     def __init__(self, title, message) -> None:
         self.title = title
         self.message = message
@@ -10,4 +10,5 @@ class NotifierService():
         notification = Notify()
         notification.title = self.title
         notification.message = self.message
+        notification.icon = "src/assets/img/binance_logo.png"
         notification.send()

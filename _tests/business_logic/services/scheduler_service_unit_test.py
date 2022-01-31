@@ -27,7 +27,7 @@ class TestSchedulerService:
         func = setup.func
         expected_calls = [mocker.call(15), mocker.call().minutes.do(func, "scheduler",)]
 
-        setup.service.run_fetch_live_offers(func, 'scheduler')
+        setup.service().run_fetch_live_offers(func, 'scheduler')
 
         assert setup.scheduler.every.mock_calls == expected_calls
 
@@ -36,7 +36,7 @@ class TestSchedulerService:
         func = setup.func
         expected_calls = [mocker.call(30), mocker.call().minutes.do(func, name="scheduler",)]
 
-        setup.service.run_process_live_offers(func, name='scheduler')
+        setup.service().run_process_live_offers(func, name='scheduler')
 
         assert setup.scheduler.every.mock_calls == expected_calls
 
