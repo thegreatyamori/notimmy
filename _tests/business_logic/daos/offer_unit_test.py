@@ -47,7 +47,7 @@ class TestOfferDAO:
 
         dao.get_items_inside_range(date_ranges)
 
-        retrieve_items.assert_called_once_with(dao.cursor, dao.name, 'created_at', date_ranges)
+        retrieve_items.assert_called_once_with(dao.cursor, dao.name, 'created_at', [])
 
     def test__shows_log_message__when_item_was_inserted(self, mocker, test_setup):
         setup = test_setup()
