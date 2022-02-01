@@ -35,7 +35,10 @@ For the next update, I plan to configure running this software in the background
 
 ## Tests
 
-To run the tests, execute:
-```
-pytest
-```
+To run the tests, execute: `pytest`
+
+## Goals
+
+- Add integrations tests
+- Add E2E tests
+- add cli props

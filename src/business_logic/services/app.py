@@ -12,8 +12,8 @@ from src.utils import average_for_many_values, calculate_last_time
 _TYPE_OF_TRADE = 'SELL'
 _FILTER_BY_PAYMENT = ["Produbanco"]
 _COUNTRY = "ecuador"
-_DEFAULT_FETCH_TIME = 1
-_DEFAULT_PROCESS_TIME = 2
+_DEFAULT_FETCH_TIME = 15
+_DEFAULT_PROCESS_TIME = 31
 
 
 class AppService:
