@@ -1,1 +1,1 @@
-from .services import AppService
+from .services.app import AppService
