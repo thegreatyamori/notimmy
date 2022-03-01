@@ -3,6 +3,15 @@ import typing
 from decimal import Decimal
 
 
+class BinanceP2PData(typing.NamedTuple):
+    nickName: str = None
+    price: Decimal = None
+    surplusAmount: Decimal = None
+    maxSingleTransAmount: Decimal = None
+    minSingleTransAmount: Decimal = None
+    tradeMethods: typing.List[typing.Dict] = []
+
+
 class P2PMapper:
     def __init__(self, data) -> None:
         self.data = data
@@ -13,13 +22,15 @@ class P2PMapper:
 
     def execute(self):
         return [
-            {
-                "nickName": trade_offer["advertiser"]["nickName"],
-                "price": Decimal(trade_offer["adv"]["price"]),
-                "surplusAmount": trade_offer["adv"]["surplusAmount"],
-                "maxSingleTransAmount": trade_offer["adv"]["dynamicMaxSingleTransAmount"],
-                "minSingleTransAmount": trade_offer["adv"]["minSingleTransAmount"],
-                "tradeMethods": trade_offer["adv"]["tradeMethods"]
-            }
+            BinanceP2PData(
+                **{
+                    "nickName": trade_offer["advertiser"]["nickName"],
+                    "price": Decimal(trade_offer["adv"]["price"]),
+                    "surplusAmount": trade_offer["adv"]["surplusAmount"],
+                    "maxSingleTransAmount": trade_offer["adv"]["dynamicMaxSingleTransAmount"],
+                    "minSingleTransAmount": trade_offer["adv"]["minSingleTransAmount"],
+                    "tradeMethods": trade_offer["adv"]["tradeMethods"]
+                }
+            )
             for trade_offer in self.parsed_data['data']
         ]

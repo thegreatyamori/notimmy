@@ -1,1 +1,1 @@
-from .options import app as cli
+from ._entrypoint import app as cli

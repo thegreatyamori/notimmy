@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-from src.business_logic.services import OfferService
+from src.business_logic.services.offer import OfferService
 
 
 class TestOfferService:

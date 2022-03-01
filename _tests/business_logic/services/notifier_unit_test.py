@@ -1,4 +1,4 @@
-from src.business_logic.services import NotifierService
+from src.business_logic.services.notifier import NotifierService
 
 
 def test__show_simple_notification__when_display_method_is_called(mocker):
