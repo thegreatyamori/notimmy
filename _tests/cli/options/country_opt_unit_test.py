@@ -12,7 +12,7 @@ def test__country_option__returns_the_value__when_cli_is_invoked():
 
 
 def test__country_wrong_option_value_shows_an_error__when_cli_is_invoked():
-    expected_message = "Only 'ecuador' is allowed"
+    expected_message = "Only ecuador is allowed"
 
     result = runner.invoke(cli, ["--country", "test", "fake-run"])
 

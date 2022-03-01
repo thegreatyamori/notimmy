@@ -1,7 +1,10 @@
+trade_types = ["BUY", "SELL"]
+
+
 def main(typer, default):
     def _version_callback(value: str) -> None:
-        if value not in ["BUY", "SELL"]:
-            raise typer.BadParameter("Only 'BUY', 'SELL' is allowed")
+        if value not in trade_types:
+            raise typer.BadParameter(f"Only {', '.join(trade_types)} is allowed")
 
         return value
 

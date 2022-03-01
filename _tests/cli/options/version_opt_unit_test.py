@@ -1,7 +1,7 @@
 from typer.testing import CliRunner
 
-from src.cli.commands import app
-from src.cli.commands.version import __app_name__, __version__
+from src.cli.options import app
+from src.cli.options.version import __app_name__, __version__
 
 runner = CliRunner()
 

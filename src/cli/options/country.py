@@ -1,7 +1,10 @@
+countries = ["ecuador"]
+
+
 def main(typer, default):
     def _country_callback(value: str) -> None:
-        if value not in ["ecuador"]:
-            raise typer.BadParameter("Only 'ecuador' is allowed")
+        if value not in countries:
+            raise typer.BadParameter(f"Only {', '.join(countries)} is allowed")
 
         return value
 
