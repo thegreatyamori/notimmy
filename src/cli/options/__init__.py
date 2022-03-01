@@ -27,11 +27,21 @@ def fake_run():
 @app.callback()
 def main(
     _version: typing.Optional[bool] = __version_option(typer),
-    _trade: typing.Optional[str] = __trade_option(typer, default=Defaults.trade),
-    _country: typing.Optional[str] = __country_option(typer, default=Defaults.country),
-    # _set_fetch_time: typing.Optional[int] = __set__fetch_time_option(typer),
-    # _set_process_time: typing.Optional[int] = __set__process_time_option(typer),
+    _trade: typing.Optional[str] = __trade_option(
+        typer, default=Defaults.trade
+    ),
+    _country: typing.Optional[str] = __country_option(
+        typer, default=Defaults.country
+    ),
+    _set_fetch_time: typing.Optional[int] = __set__fetch_time_option(
+        typer, default=Defaults.set_fetch_time
+    ),
+    _set_process_time: typing.Optional[int] = __set__process_time_option(
+        typer, default=Defaults.set_process_time
+    ),
 ) -> None:
     Defaults.trade = _trade
     Defaults.country = _country
+    Defaults.set_fetch_time = _set_fetch_time
+    Defaults.set_process_time = _set_process_time
     return
