@@ -8,7 +8,6 @@ from src.business_logic.services import (
 )
 from src.utils import average_for_many_values, calculate_last_time
 
-
 _TYPE_OF_TRADE = 'SELL'
 _FILTER_BY_PAYMENT = ["Produbanco"]
 _COUNTRY = "ecuador"

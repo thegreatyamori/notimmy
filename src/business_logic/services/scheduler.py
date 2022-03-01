@@ -1,6 +1,6 @@
+import time
 import typing
 
-import time
 import schedule
 
 DEFAULT_FETCH_TIME = 15
@@ -13,18 +13,18 @@ class SchedulerService:
         self.process_time = process_time
 
     def run_fetch_live_offers(
-        self,
-        function: typing.Callable,
-        *args,
-        **kwargs,
+            self,
+            function: typing.Callable,
+            *args,
+            **kwargs,
     ):
         schedule.every(self.fetch_time).minutes.do(function, *args, **kwargs)
 
     def run_process_live_offers(
-        self,
-        function: typing.Callable,
-        *args,
-        **kwargs,
+            self,
+            function: typing.Callable,
+            *args,
+            **kwargs,
     ):
         schedule.every(self.process_time).minutes.do(function, *args, **kwargs)
 

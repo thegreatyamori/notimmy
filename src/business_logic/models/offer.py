@@ -1,6 +1,7 @@
 import typing
 from datetime import datetime
 from decimal import Decimal
+
 from ._base import Model
 
 

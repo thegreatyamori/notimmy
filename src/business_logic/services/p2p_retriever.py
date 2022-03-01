@@ -2,7 +2,6 @@ import requests
 
 from src.business_logic.mappers import P2PMapper
 
-
 _DEFAULT_CURRENCY = "USDT"
 
 
@@ -10,11 +9,11 @@ class P2PRetrieverService:
     __base_url = "p2p.binance.com"
 
     def __init__(
-        self,
-        trade_type,
-        pay_types,
-        country,
-        **kwargs,
+            self,
+            trade_type,
+            pay_types,
+            country,
+            **kwargs,
     ):
         self.trade_type = trade_type
         self.pay_types = pay_types

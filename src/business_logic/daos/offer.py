@@ -1,7 +1,6 @@
-import sqlite3
 import logging
+import sqlite3
 import typing
-
 from datetime import datetime
 
 import src.business_logic.storage as ds
@@ -12,7 +11,8 @@ def _build_items(retrieved_items: typing.List) -> typing.List[model_offer.model]
     model_attrs = model_offer.model.__annotations__.keys()
     return [
         model_offer.model(
-            **{attr: value for attr, value in zip(model_attrs, item)}  # pylint:disable=unnecessary-comprehension
+            **{attr: value for attr, value in zip(model_attrs, item)}
+            # pylint:disable=unnecessary-comprehension
         )
         for item in retrieved_items
     ]
