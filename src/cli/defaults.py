@@ -1,7 +1,7 @@
 import typing
 
 
-class Defaults(object):
+class Defaults:
     trade: str = "SELL"
     country: str = "ecuador"
     payments: typing.List[str] = ['Produbanco']

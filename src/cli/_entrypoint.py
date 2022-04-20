@@ -41,9 +41,8 @@ def main(
         _set_process_time: typing.Optional[int] = set__process_time_option(
             typer, default=Defaults.process_time
         ),
-) -> None:
+):
     Defaults.trade = _trade
     Defaults.country = _country
     Defaults.fetch_time = _set_fetch_time
     Defaults.process_time = _set_process_time
-    return

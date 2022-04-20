@@ -1,4 +1,4 @@
-import src.cli.commands as commands
+from src.cli import commands
 
 
 def test__run_calls_logic_methods__when_is_called(mocker, fake_run_command):

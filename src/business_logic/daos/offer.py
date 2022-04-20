@@ -11,8 +11,7 @@ def _build_items(retrieved_items: typing.List) -> typing.List[model_offer.model]
     model_attrs = model_offer.model.__annotations__.keys()
     return [
         model_offer.model(
-            **{attr: value for attr, value in zip(model_attrs, item)}
-            # pylint:disable=unnecessary-comprehension
+            **{attr: value for attr, value in zip(model_attrs, item)}  # pylint:disable=unnecessary-comprehension
         )
         for item in retrieved_items
     ]
