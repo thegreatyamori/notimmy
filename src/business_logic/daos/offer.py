@@ -1,7 +1,6 @@
-import sqlite3
 import logging
+import sqlite3
 import typing
-
 from datetime import datetime
 
 import src.business_logic.storage as ds

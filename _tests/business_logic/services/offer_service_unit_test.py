@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-from src.business_logic.services import OfferService
+from src.business_logic.services.offer import OfferService
 
 
 class TestOfferService:
@@ -21,6 +21,7 @@ class TestOfferService:
                 get_items_inside_range=get_items_inside_range_mock,
                 insert=insert_mock,
             )
+
         return factory
 
     def test__get_method_calls_dao_method__when_is_called(self, test_setup):

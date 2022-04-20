@@ -25,6 +25,7 @@ class TestOfferDAO:
                 'insert_item': insert_item,
                 'create_table': create_table,
             }
+
         return factory
 
     def test__shows_log_message__when_item_was_retrieved(self, mocker, test_setup):

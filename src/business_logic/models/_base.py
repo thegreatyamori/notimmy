@@ -1,6 +1,6 @@
 import decimal
-from datetime import datetime
 import re
+from datetime import datetime
 
 _DATA_TYPES = {
     int: "INTEGER",
@@ -21,10 +21,10 @@ class Model:
         self._get_model_name()
         (
             self
-            ._set_attributes_to_string()
-            ._set_pk()
-            ._set_null()
-            ._get_attributes()
+                ._set_attributes_to_string()
+                ._set_pk()
+                ._set_null()
+                ._get_attributes()
         )
 
     def _get_model_name(self):

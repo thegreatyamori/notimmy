@@ -23,16 +23,16 @@ def test__average_for_many_values__returns_a_decimal_result(values, average):
 @pytest.mark.parametrize(
     "minutes, expected_ranges", [
         (40, (
-            datetime(2022, 1, 30, 9, 20, 59),
-            datetime(2022, 1, 30, 10, 00, 59),
+                datetime(2022, 1, 30, 9, 20, 59),
+                datetime(2022, 1, 30, 10, 00, 59),
         )),
         (26, (
-            datetime(2022, 1, 30, 9, 34, 59),
-            datetime(2022, 1, 30, 10, 00, 59),
+                datetime(2022, 1, 30, 9, 34, 59),
+                datetime(2022, 1, 30, 10, 00, 59),
         )),
         (59, (
-            datetime(2022, 1, 30, 9, 1, 59),
-            datetime(2022, 1, 30, 10, 00, 59),
+                datetime(2022, 1, 30, 9, 1, 59),
+                datetime(2022, 1, 30, 10, 00, 59),
         )),
     ]
 )

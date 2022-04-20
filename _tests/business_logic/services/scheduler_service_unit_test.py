@@ -20,12 +20,13 @@ class TestSchedulerService:
                 service=service,
                 scheduler=scheduler,
             )
+
         return factory
 
-    def test__run_fetch_live_offers_calls_scheduler__every_15_minutes(self, mocker,test_setup):
+    def test__run_fetch_live_offers_calls_scheduler__every_15_minutes(self, mocker, test_setup):
         setup = test_setup()
         func = setup.func
-        expected_calls = [mocker.call(15), mocker.call().minutes.do(func, "scheduler",)]
+        expected_calls = [mocker.call(15), mocker.call().minutes.do(func, "scheduler", )]
 
         setup.service().run_fetch_live_offers(func, 'scheduler')
 
@@ -34,7 +35,7 @@ class TestSchedulerService:
     def test__run_process_live_offers_calls_scheduler__every_30_minutes(self, mocker, test_setup):
         setup = test_setup()
         func = setup.func
-        expected_calls = [mocker.call(30), mocker.call().minutes.do(func, name="scheduler",)]
+        expected_calls = [mocker.call(30), mocker.call().minutes.do(func, name="scheduler", )]
 
         setup.service().run_process_live_offers(func, name='scheduler')
 

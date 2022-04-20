@@ -1,12 +1,5 @@
-import logging
-
-from src.business_logic import AppService
+from src.cli import cli
 
 
 if __name__ == "__main__":
-    app = AppService()
-    app.run_fetch_task()
-    app.run_notify_task()
-    logging.info("Init bot...")
-    while True:
-        app.scheduler_service.execute_jobs()
+    cli()
