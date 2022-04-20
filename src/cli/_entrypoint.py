@@ -2,7 +2,7 @@ import typing
 
 import typer
 
-from .commands import run_command
+from .commands import start_bot
 from .defaults import Defaults
 from .options import (
     country_option,
@@ -17,12 +17,12 @@ app = typer.Typer()
 
 @app.command()
 def run():
-    run_command(defaults=Defaults)
+    start_bot(defaults=Defaults)
     typer.echo("Running bot...")
 
 
-@app.command(name="fake-run")
-def fake_run():
+@app.command(name="test-run")
+def test_run():
     typer.echo("Fake run command only for tests purposes")
 
 

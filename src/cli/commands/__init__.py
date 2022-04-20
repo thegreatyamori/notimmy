@@ -1,1 +1,1 @@
-from .run import run as run_command
+from .run import run as start_bot

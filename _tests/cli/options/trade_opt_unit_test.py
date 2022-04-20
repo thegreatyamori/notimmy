@@ -7,10 +7,8 @@ runner = CliRunner()
 
 
 @pytest.mark.parametrize("value", ['BUY', 'SELL'])
-def test__trade_option__returns_the_value__when_cli_is_invoked(
-        value
-):
-    result = runner.invoke(cli, ["--trade", value, "fake-run"])
+def test__trade_option__returns_the_value__when_cli_is_invoked(value):
+    result = runner.invoke(cli, ["--trade", value, "test-run"])
 
     assert result.exit_code == 0
 
@@ -18,7 +16,7 @@ def test__trade_option__returns_the_value__when_cli_is_invoked(
 def test__trade_wrong_option_value_shows_an_error__when_cli_is_invoked():
     expected_message = "Only BUY, SELL is allowed"
 
-    result = runner.invoke(cli, ["--trade", "test", "fake-run"])
+    result = runner.invoke(cli, ["--trade", "test", "test-run"])
 
     assert result.exit_code == 2
     assert expected_message in result.stdout

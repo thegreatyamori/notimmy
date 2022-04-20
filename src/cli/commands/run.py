@@ -1,11 +1,10 @@
-from src.business_logic import Bot
+import src.business_logic as logic
+import src.cli.defaults as default_params
 
 
-def run(defaults: object):
-    is_running = True
-
-    app = Bot(defaults=defaults)
+def run(defaults: default_params.Defaults):
+    app = logic.Bot(defaults=defaults)
     app.run_tasks()
 
-    while is_running:
+    while defaults.is_running:
         app.scheduler_service.execute_jobs()
